@@ -7,4 +7,3 @@ const event = {
     },
 };
 export default event;
-//# sourceMappingURL=ready.js.map

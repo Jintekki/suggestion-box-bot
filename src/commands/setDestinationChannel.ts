@@ -1,12 +1,12 @@
 import { SlashCommandBuilder } from "discord.js";
 
-const command = {
+const setDestinationCommand = {
   data: new SlashCommandBuilder()
     .setName("set_destination_channel")
     .setDescription("Select a single channel to send suggestions to.")
     .addChannelOption((option) =>
       option
-        .setName("channel")
+        .setName("destination_channel")
         .setDescription("The channel to send suggestions to")
         .setRequired(true)
     ),
@@ -29,4 +29,4 @@ const command = {
   },
 };
 
-export default command;
+export default setDestinationCommand;

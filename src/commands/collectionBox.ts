@@ -5,7 +5,7 @@ import {
   SlashCommandBuilder,
 } from "discord.js";
 
-const command = {
+const collectionBoxCommand = {
   data: new SlashCommandBuilder()
     .setName("collection_box")
     .setDescription(
@@ -27,4 +27,4 @@ const command = {
   },
 };
 
-export default command;
+export default collectionBoxCommand;

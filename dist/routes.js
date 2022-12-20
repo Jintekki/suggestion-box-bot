@@ -35,4 +35,3 @@ router.delete("/guilds/:guildId", async (req, res) => {
     }
 });
 export default router;
-//# sourceMappingURL=routes.js.map

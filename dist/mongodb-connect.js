@@ -10,4 +10,3 @@ const mongoDBConnect = async (connectionString) => {
     }
 };
 export default mongoDBConnect;
-//# sourceMappingURL=mongodb-connect.js.map

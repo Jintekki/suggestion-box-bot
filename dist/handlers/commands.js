@@ -9,4 +9,3 @@ async function handleCommands(client) {
     }
 }
 export default handleCommands;
-//# sourceMappingURL=commands.js.map

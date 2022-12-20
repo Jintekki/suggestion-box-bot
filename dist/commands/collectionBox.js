@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder, } from "discord.js";
-const command = {
+const collectionBoxCommand = {
     data: new SlashCommandBuilder()
         .setName("collection_box")
         .setDescription("Creates a button that users will click on to submit suggestions"),
@@ -14,5 +14,4 @@ const command = {
         });
     },
 };
-export default command;
-//# sourceMappingURL=getCollectionBox.js.map
+export default collectionBoxCommand;

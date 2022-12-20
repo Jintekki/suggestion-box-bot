@@ -19,4 +19,3 @@ const event = {
     },
 };
 export default event;
-//# sourceMappingURL=interactionCreate.js.map

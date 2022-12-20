@@ -36,4 +36,3 @@ if (process.env.MONGODB_CONNECTION_STRING) {
         });
     });
 }
-//# sourceMappingURL=index.js.map

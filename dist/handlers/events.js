@@ -14,4 +14,3 @@ async function handleEvents(client) {
     }
 }
 export default handleEvents;
-//# sourceMappingURL=events.js.map
