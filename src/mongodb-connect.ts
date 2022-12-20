@@ -4,6 +4,8 @@ const mongoDBConnect = async (connectionString) => {
   try {
     const connect = await mongoose.connect(connectionString);
 
+    mongoose.set("strictQuery", true);
+
     console.log("MongoDB connected...");
     console.log(`Hostname: ${connect.connection.host}`);
   } catch (err) {

@@ -34,4 +34,15 @@ router.delete("/guilds/:guildId", async (req, res) => {
         res.send({ error: "Guild ID not registered in the database." });
     }
 });
+router.put("/guilds/:guildId/:destinationChannel", async (req, res) => {
+    const guild = await Guild.findOneAndUpdate({
+        guildId: req.params.guildId,
+    }, {
+        guildId: req.params.guildId,
+        destinationChannel: req.params.destinationChannel,
+    }, {
+        upsert: true,
+    });
+    res.send(guild);
+});
 export default router;

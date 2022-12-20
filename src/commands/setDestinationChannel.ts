@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
+import fetch from "node-fetch";
 
 const setDestinationCommand = {
   data: new SlashCommandBuilder()
@@ -14,12 +15,9 @@ const setDestinationCommand = {
     let guildId = interaction.guildId;
     let destinationChannel = interaction.options._hoistedOptions[0].value;
 
-    fetch(
-      `http://localhost:5000/api/registeredGuilds/${guildId}/${destinationChannel}`,
-      {
-        method: "PUT",
-      }
-    )
+    fetch(`http://localhost:3000/api/guilds/${guildId}/${destinationChannel}`, {
+      method: "PUT",
+    })
       .then((response) => response.json())
       .then(() => {
         interaction.reply(

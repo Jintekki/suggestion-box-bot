@@ -38,4 +38,20 @@ router.delete("/guilds/:guildId", async (req, res) => {
   }
 });
 
+router.put("/guilds/:guildId/:destinationChannel", async (req, res) => {
+  const guild = await Guild.findOneAndUpdate(
+    {
+      guildId: req.params.guildId,
+    },
+    {
+      guildId: req.params.guildId,
+      destinationChannel: req.params.destinationChannel,
+    },
+    {
+      upsert: true,
+    }
+  );
+  res.send(guild);
+});
+
 export default router;
