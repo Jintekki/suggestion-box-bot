@@ -1,26 +1,24 @@
-# Discord Bot Boilerplate 
-A simple Discord bot template that works out-of-the-box (minus environment variables)
+# Suggestion Box Bot
+A suggestion box designed for simplicity and ease-of-use. Allows members in a Discord server to send anonymous feedback to a desginated channel. 
 
-### Configuring your environment variables: 
-This boilerplate uses [dotenv](https://www.npmjs.com/package/dotenv) to configure environment variables out-of-the-box. 
+### Installation 
 
-Upon cloning this repo, `cd` into the root folder of the project and create a `.env` file (`touch .env`).
+#### Prerequisites
+You will need to create an application in the Discord Development Portal with an associated bot. From this you will need your bot's token and client ID. You will also need to create a MongoDB cluster/database and attain the connection string for it. If you plan on using this bot in only one server, or you want to keep the testing to a single server, you will need the guild ID of whichever server you plan on keeping the bot in. This can be obtained by entering the Discord Client in Developer Mode.  
 
-The following environment variables are required:<br/>
-`DISCORD_CLIENT_ID`: Can be found in your Discord Development Portal, after selecting your application and clicking "OAuth2" under the settings menu.<br/>
-`DISCORD_TOKEN`: Your bot's personal token. For security purposes, tokens can only be viewed once, when created. Can be found in your Discord Development Portal, after selecting your application and clicking "Bot" under the settings menu. 
+#### Instructions 
 
-For MongoDB support, add the following enviroment variable:<br/>
-`MONGODB_CONNECTION_STRING`: The connection string to connect to your MongoDB cluster.
+- Fork this repo and clone it to your local machine:<br/> 
+`clone https://github.com/{your Github username}/suggestion-box-bot` in your local directory of choice. 
 
-During development, it may be more convenient to deploy slash commands to a single server, such as a testing server. To do so, include the following enviornment variable. If it is not included, slash commands will automatically be deployed to every server your bot is in.<br/>
-`DISCORD_GUILD_ID`: Can be found in the Discord client while in Developer Mode. 
+- Install necessary npm packages:<br/>
+`cd` into the cloned project's root folder and `npm install`
 
-### Running the bot:
-1. Create a application in the Discord Development Portal and add a bot to it. Invite the bot to a server of your choice. 
-2. Attain your Discord app's token and client ID. You may also want to attain your MongoDB connection string and the guild ID of the server you invited your bot to.
-3. Fork and clone this respository
-4. `cd` into the root folder of the project and configure the enviroment variables as stated above. 
-5. `npm install`
-6. `npm run build`, then `npm run deploy` (the first time, and any time or change your slash commands), then `npm run start`
-7. In your test server, use the `/ping` slash command to ensure everything is working correctly. 
+- Configure your environment variables:<br/> 
+In your cloned project's root folder, create the ".env" file: `touch .env`. The .env file will need the following environment variables:
+
+  - DISCORD_TOKEN: Your Discord bot's personal token. Found on the Discord Development Portal. Can only be seen once, so be sure to save it somewhere (like a password manager).
+  - DISCORD_CLIENT_ID: Found on the Discord Development Portal.
+  - DISCORD_GUILD_ID: Optional in a production environment (see [Prerequisites](#Prerequisites) for more details)
+  - MONGODB_CONNECTION_STRING: Also make sure your IP address in whitelisted to your MongoDB cluster.
+  - NODE_ENV: Technically optional. If excluded, the project will assume a development environment. Otherwise, you can specify "staging" or "production". 
