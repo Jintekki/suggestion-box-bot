@@ -5,6 +5,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  destinationChannel: String,
 });
 
 export default mongoose.model("Guilds", schema);

@@ -1,8 +1,61 @@
-import { Events } from "discord.js";
+import {
+  ActionRowBuilder,
+  Events,
+  ModalActionRowComponentBuilder,
+  ModalBuilder,
+  TextChannel,
+  TextInputBuilder,
+  TextInputStyle,
+} from "discord.js";
+import fetch from "node-fetch";
 
 const event = {
   name: Events.InteractionCreate,
   async execute(interaction) {
+    if (interaction.isButton()) {
+      if (interaction.customId === "collection-box") {
+        const modal = new ModalBuilder()
+          .setCustomId("suggestion-modal")
+          .setTitle("Suggestion");
+        const suggestionInput = new TextInputBuilder()
+          .setMinLength(10)
+          .setCustomId("suggestion-input")
+          // The label is the prompt the user sees for this input
+          .setLabel("Type your suggestion here.")
+          // Short means only a single line of text
+          .setStyle(TextInputStyle.Paragraph);
+        const firstActionRow =
+          new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
+            suggestionInput
+          );
+        modal.addComponents(firstActionRow);
+        return interaction.showModal(modal);
+      }
+    }
+
+    if (interaction.isModalSubmit()) {
+      if (interaction.customId === "suggestion-modal") {
+        const guildId = interaction.guildId;
+        return fetch(`http://localhost:3000/api/guilds/${guildId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const channel = interaction.client.channels.cache.get(
+              data["destinationChannel"]
+            ) as TextChannel;
+
+            const suggestionText =
+              interaction.fields.getTextInputValue("suggestion-input");
+            channel.send(
+              `**Suggestion #${interaction.id} received:**\n"${suggestionText}"`
+            );
+            interaction.reply({
+              content: "Your anonymous suggestion has been submitted.",
+              ephemeral: true,
+            });
+          });
+      }
+    }
+
     if (!interaction.isChatInputCommand()) return;
 
     const command = interaction.client.commands.get(interaction.commandName);
@@ -13,7 +66,6 @@ const event = {
       );
       return;
     }
-
     try {
       await command.execute(interaction);
     } catch (error) {
