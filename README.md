@@ -22,3 +22,22 @@ In your cloned project's root folder, create the ".env" file: `touch .env`. The 
   - DISCORD_GUILD_ID: Optional in a production environment (see [Prerequisites](#Prerequisites) for more details)
   - MONGODB_CONNECTION_STRING: Also make sure your IP address in whitelisted to your MongoDB cluster.
   - NODE_ENV: Technically optional. If excluded, the project will assume a development environment. Otherwise, you can specify "staging" or "production". 
+
+- Build your project:<br/>
+`npm run build` 
+
+- Deploy your commands:<br/>
+`npm run deploy`. This only needs to be done the first time before you run your bot, or whenenver you add or delete a slash command. Depending on the NODE_ENV and DISCORD_GUILD_ID environment variables, this will either update slash commands in a single server or in all severs this bot has been invited to.
+
+- Start your bot:<br/> 
+`npm run start`
+
+### Using the Bot 
+
+The bot only has two slash commands: 
+
+- collection_box: This command brings up the button that, when clicked, brings up the modal that users can use to write and submit their feedback. It is recommended that this command be ran once in a channel specifically meant for submitting feedback, and that this channel be read-only. This command has no permission requirements by default. 
+
+- set_destination_channel: Select a channel to send all the anonymous feedback to. Only users with the "Manage Guild" permission may use this command. 
+
+
