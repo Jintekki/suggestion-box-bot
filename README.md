@@ -44,7 +44,3 @@ The bot only has two slash commands:
 - <b>/set_destination_channel:</b> Select a channel to send all the anonymous feedback to. Only users with the "Manage Guild" permission may use this command. This command must be ran first. You can only select a channel that the bot can see. Make sure this bot has write permissions to the selected channel. 
 
 - <b>/collection_box:</b> This command brings up the button that, when clicked, brings up the modal that users can use to write and submit their feedback. It is recommended that this command be ran once in a channel specifically meant for submitting feedback, and that this channel be read-only. This command has no permission requirements by default. 
-
-### Donate
-
-[Coming Soon]
