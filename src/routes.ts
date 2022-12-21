@@ -39,19 +39,29 @@ router.delete("/guilds/:guildId", async (req, res) => {
 });
 
 router.put("/guilds/:guildId/:destinationChannel", async (req, res) => {
-  const guild = await Guild.findOneAndUpdate(
-    {
-      guildId: req.params.guildId,
-    },
-    {
-      guildId: req.params.guildId,
-      destinationChannel: req.params.destinationChannel,
-    },
-    {
-      upsert: true,
+  try {
+    let guild = await Guild.findOneAndUpdate(
+      {
+        guildId: req.params.guildId,
+      },
+      {
+        guildId: req.params.guildId,
+        destinationChannel: req.params.destinationChannel,
+      },
+      {
+        upsert: true,
+      }
+    );
+    if (guild === null) {
+      guild = await Guild.findOne({
+        guildId: req.params.guildId,
+      });
     }
-  );
-  res.send(guild);
+    res.send(guild);
+  } catch {
+    res.status(404);
+    res.send({ error: "Error on FindOneAndUpdate" });
+  }
 });
 
 export default router;

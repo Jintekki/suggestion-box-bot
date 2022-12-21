@@ -17,7 +17,17 @@ const setDestinationCommand = {
             })
                 .then((response) => response.json())
                 .then(() => {
-                interaction.reply(`Channel #${interaction.options._hoistedOptions[0].channel.name} has been set as the destination channel.`);
+                interaction.reply({
+                    content: `Channel #${interaction.options._hoistedOptions[0].channel.name} has been set as the destination channel.`,
+                    ephemeral: true,
+                });
+            })
+                .catch((err) => {
+                console.error(err);
+                interaction.reply({
+                    content: `An error has occured.`,
+                    ephemeral: true,
+                });
             });
         }
         else {
