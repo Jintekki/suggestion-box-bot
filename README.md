@@ -24,9 +24,9 @@ In your cloned project's root folder, create the ".env" file: `touch .env`. The 
 
   - <b>DISCORD_TOKEN:</b> Your Discord bot's personal token. Found on the Discord Development Portal. Can only be seen once, so be sure to save it somewhere (like a password manager).
   - <b>DISCORD_CLIENT_ID:</b> Found on the Discord Development Portal.
-  - <b>DISCORD_GUILD_ID:</b> Optional in a production environment (see [Prerequisites](#Prerequisites) for more details)
+  - <b>DISCORD_GUILD_ID:</b> Required in a development environment. (see [Prerequisites](#Prerequisites) for more details)
   - <b>MONGODB_CONNECTION_STRING:</b> Also make sure your IP address is whitelisted to your MongoDB cluster.
-  - <b>NODE_ENV:</b> Technically optional. If excluded, the project will assume a development environment. Otherwise, you can specify "staging" or "production". 
+  - <b>NODE_ENV:</b> Technically optional. If excluded, the project will assume a production environment. Otherwise, you can specify "development".  
 
 - Build your project:<br/>
 `npm run build` 

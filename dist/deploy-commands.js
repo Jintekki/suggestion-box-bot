@@ -24,7 +24,9 @@ const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
     try {
         console.log(`Started refreshing ${commands.length} application (/) commands.`);
         // The put method is used to fully refresh all commands in the guild with the current set
-        const data = await rest.put(Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.DISCORD_GUILD_ID), 
+        const data = await rest.put(process.env.NODE_ENV === "development"
+            ? Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.DISCORD_GUILD_ID)
+            : Routes.applicationCommands(process.env.DISCORD_CLIENT_ID), 
         // Routes.applicationGuildCommands(clientId), // Use this instead if you want to refresh commands globally.
         { body: commands });
         console.log(`Successfully reloaded ${data["length"]} application (/) commands.`);
