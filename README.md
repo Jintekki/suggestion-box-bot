@@ -1,26 +1,48 @@
-# Discord Bot Boilerplate 
-A simple Discord bot template that works out-of-the-box (minus environment variables)
+# Suggestion Box Bot
+A suggestion box designed for simplicity and ease-of-use. Allows members in a Discord server to send anonymous feedback to a desginated channel. 
 
-### Configuring your environment variables: 
-This boilerplate uses [dotenv](https://www.npmjs.com/package/dotenv) to configure environment variables out-of-the-box. 
+### Installation 
 
-Upon cloning this repo, `cd` into the root folder of the project and create a `.env` file (`touch .env`).
+#### Prerequisites
+You will need to create an application in the Discord Development Portal with an associated bot. From this you will need your bot's token and client ID. You will also need to create a MongoDB cluster/database and attain the connection string for it. If you plan on using this bot in only one server, or you want to keep the testing to a single server, you will need the guild ID of whichever server you plan on keeping the bot in. This can be obtained by entering the Discord Client in Developer Mode.  
 
-The following environment variables are required:<br/>
-`DISCORD_CLIENT_ID`: Can be found in your Discord Development Portal, after selecting your application and clicking "OAuth2" under the settings menu.<br/>
-`DISCORD_TOKEN`: Your bot's personal token. For security purposes, tokens can only be viewed once, when created. Can be found in your Discord Development Portal, after selecting your application and clicking "Bot" under the settings menu. 
+#### Instructions 
 
-For MongoDB support, add the following enviroment variable:<br/>
-`MONGODB_CONNECTION_STRING`: The connection string to connect to your MongoDB cluster.
+- Invite the your bot to your server:<br/>
+The following permissions are necessary for the bot to work correctly (these are selected when generating an invite link for your bot):<br/>
+  - <b>Scopes:</b> bot, applications.commands
+  - <b>Bot Permissions:</b> Manage Events, Send Messages, Use Slash Commands
 
-During development, it may be more convenient to deploy slash commands to a single server, such as a testing server. To do so, include the following enviornment variable. If it is not included, slash commands will automatically be deployed to every server your bot is in.<br/>
-`DISCORD_GUILD_ID`: Can be found in the Discord client while in Developer Mode. 
+- Fork this repo and clone it to your local machine:<br/> 
+`clone https://github.com/{your Github username}/suggestion-box-bot` in your local directory of choice. 
 
-### Running the bot:
-1. Create a application in the Discord Development Portal and add a bot to it. Invite the bot to a server of your choice. 
-2. Attain your Discord app's token and client ID. You may also want to attain your MongoDB connection string and the guild ID of the server you invited your bot to.
-3. Fork and clone this respository
-4. `cd` into the root folder of the project and configure the enviroment variables as stated above. 
-5. `npm install`
-6. `npm run build`, then `npm run deploy` (the first time, and any time or change your slash commands), then `npm run start`
-7. In your test server, use the `/ping` slash command to ensure everything is working correctly. 
+- Install necessary npm packages:<br/>
+`cd` into the cloned project's root folder and `npm install`
+
+- Configure your environment variables:<br/> 
+In your cloned project's root folder, create the ".env" file: `touch .env`. The .env file will need the following environment variables:
+
+  - <b>DISCORD_TOKEN:</b> Your Discord bot's personal token. Found on the Discord Development Portal. Can only be seen once, so be sure to save it somewhere (like a password manager).
+  - <b>DISCORD_CLIENT_ID:</b> Found on the Discord Development Portal.
+  - <b>DISCORD_GUILD_ID:</b> Optional in a production environment (see [Prerequisites](#Prerequisites) for more details)
+  - <b>MONGODB_CONNECTION_STRING:</b> Also make sure your IP address is whitelisted to your MongoDB cluster.
+  - <b>NODE_ENV:</b> Technically optional. If excluded, the project will assume a development environment. Otherwise, you can specify "staging" or "production". 
+
+- Build your project:<br/>
+`npm run build` 
+
+- Deploy your commands:<br/>
+`npm run deploy`. This only needs to be done the first time before you run your bot, or whenenver you add or delete a slash command. Depending on the NODE_ENV and DISCORD_GUILD_ID environment variables, this will either update slash commands in a single server or in all severs this bot has been invited to.
+
+- Start your bot:<br/> 
+`npm run start`
+
+### Using the Bot 
+
+The bot only has two slash commands: 
+
+- <b>/collection_box:</b> This command brings up the button that, when clicked, brings up the modal that users can use to write and submit their feedback. It is recommended that this command be ran once in a channel specifically meant for submitting feedback, and that this channel be read-only. This command has no permission requirements by default. 
+
+- <b>/set_destination_channel:</b> Select a channel to send all the anonymous feedback to. Only users with the "Manage Guild" permission may use this command. 
+
+
