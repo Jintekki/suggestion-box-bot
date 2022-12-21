@@ -8,6 +8,11 @@ You will need to create an application in the Discord Development Portal with an
 
 #### Instructions 
 
+- Invite the your bot to your server:<br/>
+The following permissions are necessary for the bot to work correctly (these are selected when generating an invite link for your bot):<br/>
+  - <b>Scopes:</b> bot, applications.commands
+  - <b>Bot Permissions:</b> Manage Events, Send Messages, Use Slash Commands
+
 - Fork this repo and clone it to your local machine:<br/> 
 `clone https://github.com/{your Github username}/suggestion-box-bot` in your local directory of choice. 
 
@@ -17,11 +22,11 @@ You will need to create an application in the Discord Development Portal with an
 - Configure your environment variables:<br/> 
 In your cloned project's root folder, create the ".env" file: `touch .env`. The .env file will need the following environment variables:
 
-  - DISCORD_TOKEN: Your Discord bot's personal token. Found on the Discord Development Portal. Can only be seen once, so be sure to save it somewhere (like a password manager).
-  - DISCORD_CLIENT_ID: Found on the Discord Development Portal.
-  - DISCORD_GUILD_ID: Optional in a production environment (see [Prerequisites](#Prerequisites) for more details)
-  - MONGODB_CONNECTION_STRING: Also make sure your IP address in whitelisted to your MongoDB cluster.
-  - NODE_ENV: Technically optional. If excluded, the project will assume a development environment. Otherwise, you can specify "staging" or "production". 
+  - <b>DISCORD_TOKEN:</b> Your Discord bot's personal token. Found on the Discord Development Portal. Can only be seen once, so be sure to save it somewhere (like a password manager).
+  - <b>DISCORD_CLIENT_ID:</b> Found on the Discord Development Portal.
+  - <b>DISCORD_GUILD_ID:</b> Optional in a production environment (see [Prerequisites](#Prerequisites) for more details)
+  - <b>MONGODB_CONNECTION_STRING:</b> Also make sure your IP address is whitelisted to your MongoDB cluster.
+  - <b>NODE_ENV:</b> Technically optional. If excluded, the project will assume a development environment. Otherwise, you can specify "staging" or "production". 
 
 - Build your project:<br/>
 `npm run build` 
@@ -36,8 +41,8 @@ In your cloned project's root folder, create the ".env" file: `touch .env`. The 
 
 The bot only has two slash commands: 
 
-- collection_box: This command brings up the button that, when clicked, brings up the modal that users can use to write and submit their feedback. It is recommended that this command be ran once in a channel specifically meant for submitting feedback, and that this channel be read-only. This command has no permission requirements by default. 
+- <b>/collection_box:</b> This command brings up the button that, when clicked, brings up the modal that users can use to write and submit their feedback. It is recommended that this command be ran once in a channel specifically meant for submitting feedback, and that this channel be read-only. This command has no permission requirements by default. 
 
-- set_destination_channel: Select a channel to send all the anonymous feedback to. Only users with the "Manage Guild" permission may use this command. 
+- <b>/set_destination_channel:</b> Select a channel to send all the anonymous feedback to. Only users with the "Manage Guild" permission may use this command. 
 
 
