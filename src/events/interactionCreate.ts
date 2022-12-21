@@ -3,11 +3,11 @@ import {
   Events,
   ModalActionRowComponentBuilder,
   ModalBuilder,
-  PermissionFlagsBits,
   PermissionsBitField,
   TextChannel,
   TextInputBuilder,
   TextInputStyle,
+  TimestampStylesString,
 } from "discord.js";
 import fetch from "node-fetch";
 
@@ -67,8 +67,16 @@ const event = {
                 ephemeral: true,
               });
             } else {
+              let ts = Date.now();
+              let date_ob = new Date(ts);
+              let date = date_ob.getDate();
+              let month = date_ob.getMonth() + 1;
+              let year = date_ob.getFullYear();
+              let hour = date_ob.getUTCHours();
+              let minutes = date_ob.getUTCMinutes();
+              let seconds = date_ob.getUTCSeconds();
               channel.send(
-                `**Suggestion #${interaction.id} received:**\n"${suggestionText}"`
+                `**Suggestion received on ${year}-${month}-${date} at ${hour}:${minutes}:${seconds} :**\n"${suggestionText.trim()}"`
               );
               return interaction.reply({
                 content:
@@ -76,11 +84,6 @@ const event = {
                 ephemeral: true,
               });
             }
-
-            return interaction.reply({
-              content: "Your anonymous suggestion has been submitted.",
-              ephemeral: true,
-            });
           })
           .catch((err) => {
             console.error(err);
