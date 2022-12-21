@@ -1,4 +1,4 @@
-import { ActionRowBuilder, Events, ModalBuilder, TextInputBuilder, TextInputStyle, } from "discord.js";
+import { ActionRowBuilder, Events, ModalBuilder, PermissionsBitField, TextInputBuilder, TextInputStyle, } from "discord.js";
 import fetch from "node-fetch";
 const event = {
     name: Events.InteractionCreate,
@@ -28,9 +28,38 @@ const event = {
                     .then((data) => {
                     const channel = interaction.client.channels.cache.get(data["destinationChannel"]);
                     const suggestionText = interaction.fields.getTextInputValue("suggestion-input");
-                    channel.send(`**Suggestion #${interaction.id} received:**\n"${suggestionText}"`);
-                    interaction.reply({
+                    if (!interaction.guild.members.me
+                        .permissionsIn(channel)
+                        .has(PermissionsBitField.Flags.SendMessages)) {
+                        return interaction.reply({
+                            content: "An error has occured. Does the bot have write permissions to the intended channel? ",
+                            ephemeral: true,
+                        });
+                    }
+                    else if (!interaction.guild.members.me
+                        .permissionsIn(channel)
+                        .has(PermissionsBitField.Flags.ViewChannel)) {
+                        return interaction.reply({
+                            content: "An error has occured. Does the bot have access to the intended channel? ",
+                            ephemeral: true,
+                        });
+                    }
+                    else {
+                        channel.send(`**Suggestion #${interaction.id} received:**\n"${suggestionText}"`);
+                        return interaction.reply({
+                            content: "An error has occured. Does the bot have write permissions to the intended channel? ",
+                            ephemeral: true,
+                        });
+                    }
+                    return interaction.reply({
                         content: "Your anonymous suggestion has been submitted.",
+                        ephemeral: true,
+                    });
+                })
+                    .catch((err) => {
+                    console.error(err);
+                    return interaction.reply({
+                        content: "An error has occured. Has a destination channel been set?",
                         ephemeral: true,
                     });
                 });
