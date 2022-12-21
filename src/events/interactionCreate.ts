@@ -39,10 +39,10 @@ const event = {
         return fetch(`http://localhost:3000/api/guilds/${guildId}`)
           .then((response) => response.json())
           .then((data) => {
+            console.log("test");
             const channel = interaction.client.channels.cache.get(
               data["destinationChannel"]
             ) as TextChannel;
-
             const suggestionText =
               interaction.fields.getTextInputValue("suggestion-input");
             channel.send(
@@ -50,6 +50,14 @@ const event = {
             );
             interaction.reply({
               content: "Your anonymous suggestion has been submitted.",
+              ephemeral: true,
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+            interaction.reply({
+              content:
+                "An error has occured. Has a destination channel been set?",
               ephemeral: true,
             });
           });
