@@ -11,7 +11,7 @@ You will need to create an application in the Discord Development Portal with an
 - Invite the your bot to your server:<br/>
 The following permissions are necessary for the bot to work correctly (these are selected when generating an invite link for your bot):<br/>
   - <b>Scopes:</b> bot, applications.commands
-  - <b>Bot Permissions:</b> Manage Events, Send Messages, Use Slash Commands
+  - <b>Bot Permissions:</b> Manage Events, Send Messages, Use Slash Commands (or, if you'd like to make it easy, choose Administrator) 
 
 - Fork this repo and clone it to your local machine:<br/> 
 `clone https://github.com/{your Github username}/suggestion-box-bot` in your local directory of choice. 
@@ -41,8 +41,10 @@ In your cloned project's root folder, create the ".env" file: `touch .env`. The 
 
 The bot only has two slash commands: 
 
+- <b>/set_destination_channel:</b> Select a channel to send all the anonymous feedback to. Only users with the "Manage Guild" permission may use this command. This command must be ran first. You can only select a channel that the bot can see. Make sure this bot has write permissions to the selected channel. 
+
 - <b>/collection_box:</b> This command brings up the button that, when clicked, brings up the modal that users can use to write and submit their feedback. It is recommended that this command be ran once in a channel specifically meant for submitting feedback, and that this channel be read-only. This command has no permission requirements by default. 
 
-- <b>/set_destination_channel:</b> Select a channel to send all the anonymous feedback to. Only users with the "Manage Guild" permission may use this command. 
+### Donate
 
-
+[Coming Soon]
