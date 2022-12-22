@@ -49,4 +49,4 @@ The bot only has three slash commands:
 
 ### Donate
 
-If you'd like to donate, click here (and thank you!): paypal.me/Jintekki 
+If you'd like to donate, [click here](paypal.me/Jintekki) (and thank you!).
