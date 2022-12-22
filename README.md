@@ -39,8 +39,14 @@ In your cloned project's root folder, create the ".env" file: `touch .env`. The 
 
 ### Using the Bot 
 
-The bot only has two slash commands: 
+The bot only has three slash commands: 
 
 - <b>/set_destination_channel:</b> Select a channel to send all the anonymous feedback to. Only users with the "Manage Guild" permission may use this command. This command must be ran first. You can only select a channel that the bot can see. Make sure this bot has write permissions to the selected channel. 
 
 - <b>/collection_box:</b> This command brings up the button that, when clicked, brings up the modal that users can use to write and submit their feedback. It is recommended that this command be ran once in a channel specifically meant for submitting feedback, and that this channel be read-only. This command has no permission requirements by default. 
+
+- <b>/help:</b> Explains how to set-up with the two slash commands mentioned above and provides a link to this repo. 
+
+### Donate
+
+If you'd like to donate, click here (and thank you!): paypal.me/Jintekki 
